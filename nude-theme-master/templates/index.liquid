@@ -1,0 +1,17 @@
+{% comment %}
+  The homepage is set up to list active collections, so it essentially duplicates the list-collections.liquid template.
+{% endcomment %}
+
+<header>
+  <h1>Homepage</h1>
+</header>
+
+{% comment %}
+  There is no way in the admin to manually sort collections, except by setting the 'published_at' date (via bulk editing)
+{% endcomment %}
+{% assign sorted_collections = collections | sort: 'published_at' | reverse %}
+<ul class="collections-list">
+  {% for collection in sorted_collections %}
+    {% include 'collection-item' %}
+  {% endfor %}
+</ul>

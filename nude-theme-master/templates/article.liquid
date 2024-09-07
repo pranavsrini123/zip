@@ -1,0 +1,37 @@
+
+<section>
+  <header>
+    <h2><a href="{{ blog.url }}">{{ blog.title }}</a></h2>
+    <h1 class="title">
+      {{ article.title }}
+    </h1>
+    <h3 class="date">
+      <time pubdate datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%b %d, %Y' }}</time>
+    </h3>
+  </header>
+
+  <article>
+    {{ article.content }}
+  </article>
+
+  <aside class="tags-holder">
+    {% if article.tags.size > 0 %}
+      <ul class="tags">
+        {% for tag in article.tags %} 
+          <li><a href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a>{% unless forloop.last %}, {% endunless %}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </aside>
+</section>
+
+{% if blog.next_article or blog.previous_article %}
+  <nav>
+    {% if blog.next_article %}
+      <p class="next">{{ '&larr; Next post' | link_to: blog.next_article }}</p>
+    {% endif %}    
+    {% if blog.previous_article %}
+      <p class="previous">{{ 'Previous post &rarr;' | link_to: blog.previous_article }}</p>
+    {% endif %}
+  </nav>
+{% endif %}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    {% comment %}
+      Required by Shopify and can't be moved to a snippet
+    {% endcomment %}
+    {{ content_for_header }}
+    {% include 'head' %}
+  </head>
+  <body class="{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}{% if page.handle %} {{ page.handle }}{% endif %}" >
+
+    {% comment %}
+      Begin layout stuff
+    {% endcomment %}
+
+    {% include 'header' %}
+    {{ content_for_layout }}
+    {% include 'footer' %}
+
+    {% comment %}
+      END layout stuff
+    {% endcomment %}
+
+    {% include 'bottom' %}
+
+  </body>
+</html>
